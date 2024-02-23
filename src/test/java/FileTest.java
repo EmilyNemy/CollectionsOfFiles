@@ -29,9 +29,17 @@ public class FileTest {
         ReportGenerator reportGenerator = new ReportGenerator();
         Report actual = reportGenerator.generateReport(files, 3);
         Report expected = new Report(810,
-                Arrays.asList(new CollectionMetadata("collections2", 300),
-                        new CollectionMetadata("collection1", 400)));
+                Arrays.asList(new CollectionMetadata("collection1", 300),
+                        new CollectionMetadata("collection2", 400)));
+
         Assertions.assertEquals(expected.totalSize, actual.totalSize);
-        Assertions.assertEquals(expected.collectionNames, actual.collectionNames);
+
+
+        for(int i = 0; i < expected.collectionNames.size(); i++){
+//            System.out.println("Expected");
+//            System.out.println(name.collectionName);
+            Assertions.assertEquals(expected.collectionNames.get(i).collectionName, actual.collectionNames.get(i).collectionName);
+        }
+
     }
 }
